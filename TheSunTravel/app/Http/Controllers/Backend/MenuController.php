@@ -9,7 +9,7 @@ class MenuController extends Controller
 {
     public function getMenu()
     {
-        $menus = MenuModel::where('status', true)->get();
+        $menus = MenuModel::all();
         $title= "Danh sách menu";
         return view('backend.menu.getMenu', compact('menus','title'));
     }
@@ -51,7 +51,7 @@ class MenuController extends Controller
         return redirect()->route('menu.getMenu')->with('success', 'Sửa menu thành công.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $menu = MenuModel::findOrFail($id);
         $menu->delete();

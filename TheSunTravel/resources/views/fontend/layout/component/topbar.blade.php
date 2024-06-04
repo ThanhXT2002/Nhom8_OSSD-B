@@ -27,7 +27,7 @@
                      }
                  </style>
                  @if (Auth::check())
-                     <a href="#" class=" text-light me-3">
+                     <a href="{{route('profile')}}" class=" text-light me-3">
                         <small>
                              <img src="{{ Auth::user()->image ? Auth::user()->image : asset('fontend/img/no-img.png') }}"
                                  alt="Avatar" class="avatar me-2"> {{ Auth::user()->name }}
@@ -35,7 +35,7 @@
                     </a>
                      <a href="{{ route('account.logout') }}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Log Out</small></a>
                  @else
-                     <a href="#"><small class="me-3 text-light"><i
+                     <a href="{{route('account.register')}}"><small class="me-3 text-light"><i
                                  class="fa fa-user me-2"></i>Register</small></a>
 
                      <a href="{{ route('account.loginForm') }}"><small class="me-3 text-light"><i

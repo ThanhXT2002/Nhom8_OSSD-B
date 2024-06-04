@@ -3,3 +3,5 @@ php artisan make:controller MyController --resource
 php artisan make:model MyModel -m
 
 php artisan make:migration add_idt_and_description_to_tour_table --table=Tour
+
+composer require yoeunes/toastr

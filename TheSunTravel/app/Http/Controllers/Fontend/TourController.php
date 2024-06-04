@@ -13,9 +13,9 @@ class TourController extends Controller
      */
     public function index()
     {
-        $domesticTours = TourModel::where('category', 1)->get(); // Sử dụng dấu phẩy thay vì '=='
+        $domesticTours = TourModel::where('category', 1)->where('status',1)->get(); // Sử dụng dấu phẩy thay vì '=='
 
-        $InternationalTours = TourModel::where('category', 0)->get(); // Sử dụng dấu phẩy thay vì '=='
+        $InternationalTours = TourModel::where('category', 0)->where('status',1)->get(); // Sử dụng dấu phẩy thay vì '=='
 
         return view('fontend.tour.index', compact('domesticTours','InternationalTours'));
     }
@@ -24,10 +24,16 @@ class TourController extends Controller
     {
         // Tìm tour dựa trên url
         $tour = TourModel::where('url', $url)->with('tourDepartures')->firstOrFail();
-        $domesticTours = TourModel::where('category', 1)->get();
+        // Lấy category của tour hiện tại
+        $category = $tour->category;
+            // Truy vấn các tour có cùng category và có status = 1, loại trừ tour hiện tại
+        $remindsTours = TourModel::where('category', $category)
+        ->where('status', 1)
+        ->where('id', '!=', $tour->id)
+        ->get();
 
         // Trả về view với dữ liệu tour và danh sách lịch khởi hành
-        return view('fontend.tour.detail', compact('tour', 'domesticTours'));
+        return view('fontend.tour.detail', compact('tour', 'remindsTours'));
     }
 
    

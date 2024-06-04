@@ -9,18 +9,41 @@ use App\Http\Controllers\Backend\BookingController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Fontend\AccountController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Fontend\HomeController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\LoginMiddleware;
 
 
-Route::get('/', function () {
-    return view('fontend.home.index');
-});
+Route::get('/',
+    [HomeController::class, 'index']
+    )->name('home');
 
 
-Route::post('booking',
-    [BookingController::class, 'create']
-    )->name('tour.booking');
+
+
+Route::get('services', function () {
+    return view('fontend.services');
+})->name('services');
+
+Route::get('about', function () {
+    return view('fontend.about');
+})->name('about');
+
+Route::get('contact', function () {
+    return view('fontend.contact');
+})->name('contact');
+
+Route::get('blog', function () {
+    return view('fontend.blog');
+})->name('blog');
+
+
+
+Route::get('resulteSearch',
+    [HomeController::class, 'search']
+    )->name('search');
+
+
 
 Route::group(['prefix'=>'tour'], function(){
     Route::get('index',
@@ -29,7 +52,11 @@ Route::group(['prefix'=>'tour'], function(){
 
     Route::get('detail/{url}',
     'App\Http\Controllers\Fontend\TourController@detail'
-    )->name('tour.detail');   
+    )->name('tour.detail');  
+
+    Route::post('booking',
+    [BookingController::class, 'create']
+    )->name('tour.booking'); 
 
 });
 
@@ -53,6 +80,14 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('logout', 
     [AccountController::class, 'logout']
     )->name('account.logout');
+
+    Route::get('profile', function () {
+        return view('fontend.user.profile');
+    })->name('profile');
+
+    Route::post('update2/{id}', 
+        [UserController::class, 'update']
+        )->name('user.update2');
 });
 
 

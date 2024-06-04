@@ -23,7 +23,7 @@
     <link href="{{ asset('backend/css/plugins/clockpicker/clockpicker.css') }}" rel="stylesheet"> --}}
 
     <!-- Custom styles -->
-    <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
+   
     <link href="{{ asset('backend/css/customize.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
@@ -34,15 +34,9 @@
     <!-- jQuery script -->
     <script src="{{ asset('backend/js/jquery-3.1.1.min.js') }}"></script>
 
-    {{-- @if(isset($config['css']) && is_array($config['css']))
-    @foreach ($config['css']  as $key => $val) 
-{!!'<link rel="stylesheet" href="'.$val.'"></link>'!!}
-    @endforeach
-@endif --}}
+    <link href="{{ asset('backend/css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
 
 
-{{-- <script>
-    var BASE_URL = "{{config('app.url')}}"
-    var SUFFIX = "{{ config('apps.general.suffix')}}"
 
-</script> --}}
+

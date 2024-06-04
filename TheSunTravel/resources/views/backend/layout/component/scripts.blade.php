@@ -38,6 +38,8 @@
     @endif --}}
 
     {{-- <script src="{{ asset('backend/js/plugins/dataTables/datatables.min.js') }}"></script> --}}
+    <!-- Select2 -->
+    <script src="{{ asset('backend/js/plugins/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('backend/js/jscustom.js') }}"></script>
 
 
@@ -50,6 +52,13 @@
             $('.summernote').summernote();
             $('.footable').footable();
             $('.footable2').footable();
+
+            $(".select2_demo_1").select2();
+            $(".select2_demo_2").select2();
+            $(".select2_demo_3").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
 
 
         });

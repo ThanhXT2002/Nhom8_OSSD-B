@@ -25,10 +25,10 @@
                                             <label for="" class="control-lable text-right">Tên tour du lịch
                                                 <span class="text-danger">(*)</span>
                                             </label>
-                                            <select name="tour_id" id="" class="form-control">
+                                            <select name="tour_id" id="" class="form-control select2_demo_3 ">
                                                 <option value="">Chọn tour</option>
                                                 @foreach($tours as $tour)
-                                                    <option value="{{ $tour->id }}">{{ $tour->name }}</option>
+                                                    <option value="{{ $tour->id }}">{{$tour->idT}} --- {{ $tour->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

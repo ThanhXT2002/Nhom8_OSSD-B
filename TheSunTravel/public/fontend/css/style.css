@@ -1326,5 +1326,25 @@
     font-weight: bold;
 }
 
+.card {
+    height: 100%;
+}
+
+.card-img-top {
+    object-fit: cover; /* Đảm bảo ảnh căn chỉnh và giữ tỷ lệ khung hình */
+    height: 300px; /* Điều chỉnh chiều cao ảnh */
+}
+
+.card-title, .card-text {
+    overflow: hidden; /* Ẩn văn bản tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị ba chấm khi văn bản tràn ra ngoài */
+    -webkit-line-clamp: 3; /* Giới hạn số dòng hiển thị */
+    -webkit-box-orient: vertical; /* Đảm bảo văn bản xuất hiện dọc */
+    display: -webkit-box; /* Hiển thị văn bản theo kiểu block */
+}
+
+.card-footer {
+    margin-top: auto; /* Đẩy footer về phía dưới khi nội dung ngắn */
+}
 
 

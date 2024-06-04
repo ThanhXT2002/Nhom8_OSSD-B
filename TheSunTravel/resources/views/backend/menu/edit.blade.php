@@ -72,8 +72,6 @@
                                                 <span class="text-danger">(*)</span>
                                             </label>
                                             <select name="status" id="" class="form-control">
-                                                <option value="1">Hoạt động</option>
-                                                <option value="0">Tạm ngừng</option>
                                                 <option value="0" {{ old('status', isset($menu) ? $menu->status : '') == 0 ? 'selected' : '' }}>Tạm ngừng</option>
                                                 <option value="1" {{ old('status', isset($menu) ? $menu->status : '') == 1 ? 'selected' : '' }}>Hoạt động</option>
                                             </select>

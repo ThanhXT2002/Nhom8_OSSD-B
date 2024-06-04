@@ -2,16 +2,68 @@
 @section('content')
 
 @include('fontend.layout.component.carouselHome')
+
     <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
         <div class="container">
             <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
-                <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text"
-                    placeholder="Eg: Thailand">
-                <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
-                    style="top: 50%; right: 46px; transform: translateY(-50%);">Search</button>
+                <form action="{{ route('search') }}" method="get">
+                    <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" name="keyword"
+                    placeholder="Nhập từ khóa tìm kiếm">
+                <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+                    style="top: 50%; right: 46px; transform: translateY(-50%);">Tìm kiếm</button>
+                </form>
             </div>
         </div>
     </div>
+
+
+     <!-- Packages Start -->
+ <div class="container-fluid packages">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Packages</h5>
+            <h1 class="mb-0">Tour mới</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            @foreach($tours as $tour) 
+            <div class="packages-item">
+                <div class="packages-img">
+                    <img src="{{ $tour->image }}" class="img-fluid w-100 rounded-top" alt="Image">
+                    <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
+                        style="width: 100%; bottom: 0; left: 0; z-index: 5;">
+                        
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt me-2"></i>{{$tour->time}}</small>
+                        <small class="flex-fill text-center py-2"><i class="fa fa-user me-2"></i>{{$tour->quantity}}</small>
+                    </div>
+                </div>
+                <div class="packages-content bg-light">
+                    <div class="p-4 pb-0">
+                        <h5 class="mb-0">{{$tour->name}}</h5>
+                        <small class="text-uppercase font-weight">
+                            <i class="fa fa-map-marker-alt me-2"></i>Điểm đến:</small>
+                        <div class="mb-3">
+                           {{$tour->place}}
+                        </div>
+                        <div class="mb-3">
+                            <strong> Giá: {{ number_format($tour->price, 0, ',', '.') }} VNĐ</strong>
+                        </div>
+                        <p class="mb-4">{{$tour->description}}</p>
+                    </div>
+                    <div class="row bg-primary rounded-bottom mx-0">
+                        <div class="col-6 text-start px-0">
+                            <a href="{{route('tour.detail', $tour->url)}}" class="btn-hover btn text-white py-2 px-4">Chi tiết</a>
+                        </div>
+                        <div class="col-6 text-end px-0">
+                            <a href="https://zalo.me/0936867190" class="btn-hover btn text-white py-2 px-4">Liên hệ ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- Packages End -->
 
     {{-- <!-- About Start -->
     <div class="container-fluid about py-5">

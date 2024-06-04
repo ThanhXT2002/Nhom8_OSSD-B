@@ -42,7 +42,8 @@ class AccountController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return view('fontend.home.index',['user' => $user])->with('success','Đăng nhập thành công');
+            return redirect()->route('home',['user' => $user]
+            )->with('success','Đăng nhập thành công');
         }
         return redirect()->route('account.loginForm')->with('error','Email hoặc mật khẩu không chính xác!');
     }

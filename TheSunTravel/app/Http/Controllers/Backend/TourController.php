@@ -24,6 +24,7 @@ class TourController extends Controller
         }
         return view('backend.tour.getTour',['tours'=>$tours,'title'=>'Danh sách tour du lịch']);
     }
+    
     public function formCreate()
     {
         return view('backend.tour.create',['title'=>'Thêm tour du  lịch']);

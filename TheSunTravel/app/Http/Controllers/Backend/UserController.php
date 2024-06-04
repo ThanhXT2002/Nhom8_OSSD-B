@@ -55,8 +55,10 @@ class UserController extends Controller
         return view('backend.user.edit',['user'=>$user,'title'=>'Chỉnh sửa thông thành viên']);
     }
 
-    function update(Request $request,$id){
+    function update(Request $request, $id)
+    {
         $user = User::findOrFail($id);
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -65,16 +67,25 @@ class UserController extends Controller
         $user->gender = $request->gender;
         $user->role = $request->role;
         $user->status = $request->status;
-        // Mã hóa mật khẩu trước khi lưu
-        $user->password = Hash::make($request->password);
-    
+
+        // Chỉ cập nhật mật khẩu nếu người dùng nhập mật khẩu mới
+        if ($request->filled('password')) { // kiểm tra xem trường password có giá trị hay không
+            $user->password = Hash::make($request->password);
+        }
+
+        // Kiểm tra và cập nhật ảnh đại diện nếu có
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $image = 'data:image/png;base64,' . base64_encode(file_get_contents($_FILES['image']['tmp_name']));
             $user->image = $image;
         }
+
         $user->save();
+        if ($request->route()->named('user.update2')) {
+            return redirect()->back()->with('success', ' Cập nhật thành công!');
+        }
         return redirect()->route('user.index')->with('success', "Chỉnh sửa thành công!");
     }
+
     function delete($id){
         $user = User::where('id', $id)->first();
         $user->delete();
